@@ -1,0 +1,11 @@
+@startuml
+user --> (editar pefil)
+user --> (fazer publicação)
+user --> (editar conta)
+user --> (realizar busca [Restaurante, cidade, pontos de interesse])
+user --> (adicionar amigo)
+user --> (mostrar mensagens trocadas)
+user --> (buscar amigo)
+user --> (desfazer amizade)
+user --> (usar chat)
+@enduml
