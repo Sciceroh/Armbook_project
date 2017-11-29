@@ -1,27 +1,28 @@
-class Armbook_user:
+class Armbook:
 
     def __init__(self):
-        self.usuario = []
-        self.logado = self.logon()
-        self.tela()
+        #self.usuarios = []
+        #self.logado = self.logon()
+        #self.tela()
 
     def cadastra_clientes(self):
-        login = self.nome.get()
-        senha = self.nome.get()
-        nome = self.nome.get()
-        email = self.email.get()
-        idade = self.idade.get()
-        profissao = self.profissao.get()
+        #login = self.nome.get()
+        login = input("Login: ")
+        senha = input("Senha: ")
+        nome = input("Nome: ")
+        email = input("Email: ")
+        idade = input("Idade: ")
+        profissao = input("Profissão: ")
 
         usuario = Usuario(login, senha, nome, idade, email, profissao)
-        self.usuario.append(usuario)
+        self.usuarios.append(usuario)
         return usuario
 
     def deleta_cliente(self):
-        self.nome.remove()
-        self.email.remove()
-        self.idade.remove()
-        self.profissao.remove()
+        #self.nome.remove()
+        #self.email.remove()
+        #self.idade.remove()
+        #self.profissao.remove()
         self.usuario.remove(self.logado)
 
     def listar_usuario(self):
@@ -37,28 +38,28 @@ class Armbook_user:
             print ("Fechar")
         else:
             return self.cadastra_clientes()
-        
+       
         return self.login
 
-    def senha(self):
+    def get_senha(self):
         return self.senha
 
-    def nome(self):
+    def get_nome(self):
         return self.nome
 
-    def idade(self):
+    def get_idade(self):
         return self.idade
 
-    def email(self):
+    def get_email(self):
         return self.email
 
-    def profissao(self):
+    def get_profissao(self):
         return self.profissao
 
 
 
 
-class user(User_Armbook):
+class user(Armbook):
     def __init__(self, login, senha nome, email, idade, profissao):
         self.login = login
         self.senha = senha
@@ -74,8 +75,7 @@ class user(User_Armbook):
     def getuser(self, i):
         return self._user
 
-    def __str__(self):
-        pass
+   
 
     def set_nome(self, nome):
         if len(nome) > 0:
