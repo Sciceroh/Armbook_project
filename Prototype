@@ -1,0 +1,47 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__email_senha__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+class Cadastro(db.Model):
+        
+  login = db.Column(db.String(20), primary_key=True)
+  senha = db.Column(db.String(20))
+  nome = db.Column(db.String(20))
+  email = db.Column(db.String(200))
+  idade = db.Column(db.String(20))
+
+  def __init__(self,**kwargs):
+    super(Cadastro, self).__init__(**kwargs)
+    self.llogin = []
+    self.lsenha = []
+    self.lnome = []
+    self.lemail = []
+    self.lidade = []
+    
+  def __init__(self):
+    self.usuarios = []
+    self.logado = self.logon()
+    self.tela()
+
+  def cadastra_usuario(self):
+    #login = self.nome.get()
+    login = input("Login: ")
+    senha = input("Senha: ")
+    nome = input("Nome: ")
+    email = input("Email: ")
+    idade = input("Idade: ")
+    
+    #usuario = Usuario(login, senha, nome, idade, email)
+    #self.Cadastro.append(usuario)
+    self.llogin.append(login)
+    self.lsenha.append(senha)
+    self.lnome.append(nome)
+    self.lemail.append(email)
+    self.lidade.append(idade)
+    #return usuario
+    
+db.create_all()
+db.session.add()
