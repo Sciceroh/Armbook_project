@@ -1,40 +1,35 @@
-class Armbook:
 import psycopg2
+from usuario import *
+
+class Armbook:
 
     def __init__(self):
-        self.conexao = psycopg2.connect()
+        self.conexao = psycopg2.connect(host="localhost", database="armbook_db", user="postgres", password="1111")
         self.usuarios = []
-        self.logado = self.logon()
-        self.tela()
-    
-    def cadastra_usuario(self):
+
+    def cadastra_usuario(self, senha, nome, email, idade):
         #login = self.nome.get()
-        senha = input("Senha: ")
-        nome = input("Nome: ")
-        email = input("Email: ")
-        idade = input("Idade: "
 
         cursor = self.conexao.cursor()
         cursor.execute(
-            'INSERT INTO usuario(senha, nome, email, idade) VALUES (%s, %s, %s, %s,)',
-            (senha, nome, email, idade)
-        )
+            'INSERT INTO usuario(senha, nome, email, idade) VALUES (%s, %s, %s, %s)',
+            (senha, nome, email, idade))
         cursor.close()
         self.conexao.commit()
 
-    usuario = Usuario(senha, nome, idade, email)
-    self.usuarios.append(usuario)
-    return usuario
+        usuario = user(senha, nome, idade, email)
+        self.usuarios.append(usuario)
+        return usuario
 
-    def deleta_usuario(self):
-        #self.nome.remove()
-        #self.email.remove()
-        #self.idade.remove()
-        #self.usuario.remove(self.logado)
+    '''def deleta_usuario(self):
+        self.nome.remove()
+        self.email.remove()
+        self.idade.remove()
+        self.usuario.remove(self.logado)
         cursor = self.conexao.cursor()
         cursor.execute('DELETE FROM usuario WHERE email=\'{}\''.format(self.logado.email))
         cursor.close()
-        exit()
+        exit()'''
 
 
     def listar_usuario(self):
@@ -63,21 +58,21 @@ import psycopg2
         self.usuario_logado = self.login()
 
     def Meny(self):
-        Menu = input("Escolha uma opção: 1 Para Atualizar Usuário | 2 Para Listar Usuário | 3 Para Deletar Usuário | 4 Não fazer nada")
-        if menu == 1:
-            Nova_senha = input("Digite nova senha")
-            Novo_nome = input("Digite novo nome")
-            Novo_Email = input("Digte novo email")
-            Novo_Idade = input("Digite nova idade")
+        menu = input("Escolha uma opção: 1 Para Cadastrar Usuário | 2 Para Listar Usuário | 3 Para Deletar Usuário | 4 Não fazer nada")
+        while menu != "0":
+            if menu == '1':
+                Nova_senha = input("Digite nova senha")
+                Novo_nome = input("Digite novo nome")
+                Novo_Email = input("Digte novo email")
+                Novo_Idade = input("Digite nova idade")
+                self.cadastra_usuario(Nova_senha, Novo_nome, Novo_Email, Novo_Idade)
 
-        return self.cadastra_usuario()
+            elif menu == '2':
+                return self.listar_usuario()
+            elif menu == '3':
+                return self.deleta_usuario()
 
-        elif menu == 2:
-            return self.listar_usuario()
-        elif menu == 3:
-            return self.deleta_usuario()
-        else:
-            print ("Você não fez nada")
+            return menu
 
     def get_senha(self):
         return self.senha
@@ -91,5 +86,5 @@ import psycopg2
     def get_email(self):
         return self.email
 
-    def get_profissao(self):
-        return self.profissao
+a= Armbook()
+a.Meny()
