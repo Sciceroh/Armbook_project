@@ -1,0 +1,10 @@
+
+create database Armbook_DB;
+
+create table usuario (
+	email varchar(100)
+  nome varchar(25) not null,
+	senha varchar(50) not null,
+  idade int not null,
+	primary key(email)
+);
