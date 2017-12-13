@@ -1,28 +1,19 @@
-import * from Armbook.py
+class user:
+    def __init__(self, senha, nome, email, idade):
+        self.senha = senha
+        self.nome = nome
+        self.email = email
+        self.idade = idade
 
+    def set_email(self,email):
+        self.email = email
 
-class user(Armbook):
-  def __init__(self, senha nome, email, idade):
-    self.senha = senha
-    self.nome = nome
-    self.email = email
-    self.idade = idade
+    def set_senha(self,senha):
+        self.senha = senha
 
-  def __init__(self, nome, email, idade):
-    super(user, self).__init__(nome, email, idade)
-    self._user = user
+    def set_nome(self, nome):
+        self.nome = nome
 
-  def setuser(self, i):
-    return self._user
+    def set_idade(self, idade):
+        self.idade = idade
 
-  def set_nome(self, nome):
-    if len(nome) > 0:
-      self.nome = nome
-
-  def set_idade(self, idade):
-    if idade > 0:
-      self.idade = idade
-
-  def set_email(self,email):
-    if len(nome) > 0:
-      self.email = email
