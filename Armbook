@@ -1,12 +1,12 @@
 class Armbook:
 import psycopg2
 
-  def __init__(self):
-    self.conexao = psycopg2.connect()
-    self.usuarios = []
-    self.logado = self.logon()
-    self.tela()
-
+    def __init__(self):
+        self.conexao = psycopg2.connect()
+        self.usuarios = []
+        self.logado = self.logon()
+        self.tela()
+    
     def cadastra_usuario(self):
         #login = self.nome.get()
         senha = input("Senha: ")
@@ -14,13 +14,13 @@ import psycopg2
         email = input("Email: ")
         idade = input("Idade: "
 
-            cursor = self.conexao.cursor()
-            cursor.execute(
-                'INSERT INTO usuario(senha, nome, email, idade) VALUES (%s, %s, %s, %s,)',
-                (senha, nome, email, idade)
-            )
-            cursor.close()
-            self.conexao.commit()
+        cursor = self.conexao.cursor()
+        cursor.execute(
+            'INSERT INTO usuario(senha, nome, email, idade) VALUES (%s, %s, %s, %s,)',
+            (senha, nome, email, idade)
+        )
+        cursor.close()
+        self.conexao.commit()
 
     usuario = Usuario(senha, nome, idade, email)
     self.usuarios.append(usuario)
