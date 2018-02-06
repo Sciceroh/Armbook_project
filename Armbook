@@ -5,7 +5,8 @@ class Armbook:
 
     def __init__(self):
         self.conexao = psycopg2.connect(host="localhost", database="armbook_db", user="postgres", password="1111")
-        self.usuarios = []
+        self.usuario_log = self.login()
+        self.mostrar_menu()
 
     def cadastra_usuario(self, senha, nome, email, idade):
         #login = self.nome.get()
@@ -19,18 +20,14 @@ class Armbook:
 
         usuario = user(senha, nome, idade, email)
         self.usuarios.append(usuario)
-        return usuario
+        return usuario (nome, email, idade, senha, '', apelido)
 
-    '''def deleta_usuario(self):
-        self.nome.remove()
-        self.email.remove()
-        self.idade.remove()
-        self.usuario.remove(self.logado)
+    def deleta_usuario(self, usuario_logado):
         cursor = self.conexao.cursor()
-        cursor.execute('DELETE FROM usuario WHERE email=\'{}\''.format(self.logado.email))
+        cursor.execute('DELETE FROM usuario WHERE email=\'{}\''.format(self.usuario_logado.email))
         cursor.close()
-        exit()'''
-
+        self.conexao.commit()
+        exit()
 
     def listar_usuario(self):
         print(usuario)
@@ -55,7 +52,7 @@ class Armbook:
         return self.login
 
     def deslogar(self):
-        self.usuario_logado = self.login()
+        self.usuario_login = self.login()
 
     def Meny(self):
         menu = input("Escolha uma opção: 1 Para Cadastrar Usuário | 2 Para Listar Usuário | 3 Para Deletar Usuário | 4 Não fazer nada")
@@ -68,23 +65,10 @@ class Armbook:
                 self.cadastra_usuario(Nova_senha, Novo_nome, Novo_Email, Novo_Idade)
 
             elif menu == '2':
-                return self.listar_usuario()
+                self.listar_usuario()
             elif menu == '3':
-                return self.deleta_usuario()
-
+                self.deleta_usuario(self.usuario_logado)
             return menu
-
-    def get_senha(self):
-        return self.senha
-
-    def get_nome(self):
-        return self.nome
-
-    def get_idade(self):
-        return self.idade
-
-    def get_email(self):
-        return self.email
 
 a= Armbook()
 a.Meny()
