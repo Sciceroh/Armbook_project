@@ -16,4 +16,15 @@ class user:
 
     def set_idade(self, idade):
         self.idade = idade
+    
+    def get_email(self):
+        return self.email
 
+    def get_senha(self):
+        return self.senha
+        
+    def get_nome(self):
+        return self.nome
+
+    def get_idade(self):
+        return self.idade
