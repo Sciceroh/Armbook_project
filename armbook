@@ -1,0 +1,22 @@
+from src.ExceptFile3000 import AuthenticationException
+from src.usuario import Usuario
+from src.DAOs.SistemaDAO import SistemaDAO
+from src.Interface.Menu import Menu
+
+
+class Armbook:
+  def __init__(self):
+    self.menu = Menu(self)
+    self.menu.mostrar_menu_inicial()
+    self.usuario_logado = None
+    
+  def cadastra_usuario(self, user):
+    SistemaDAO().cadastrar_usuario(self.usuario_logado)
+
+  def deleta_usuario(self):
+    SistemaDAO().remover_usuario(self.usuario_logado)
+    exit()
+
+  def listar_usuario(self):
+    usuarios = SistemaDAO().obter_usuarios()
+    self.menu.listar_usuarios(usuarios)
